@@ -8,11 +8,29 @@
 // Pin  6: Teensy++ 2.0 has the LED on pin 6
 // Pin 13: Teensy 3.0 has the LED on pin 13
 
-#define SENSORPIN 2
+#define SENSORPIN_1 2
+#define SENSORPIN_2 3
+#define SENSORPIN_3 5
+#define SENSORPIN_4 6
+#define SENSORPIN_5 7
+#define SENSORPIN_6 8
+#define SENSORPIN_7 9
 
 // variables will change:
-int sensorState = 0,
-    lastState = 0; // variable for reading the pushbutton status
+int sensorState_1 = 0,
+    sensorState_2 = 0,
+    sensorState_3 = 0,
+    sensorState_4 = 0,
+    sensorState_5 = 0,
+    sensorState_6 = 0,
+    sensorState_7 = 0,
+    lastState_1 = 0, // variable for reading the pushbutton status
+    lastState_2 = 0, // variable for reading the pushbutton status
+    lastState_3 = 0, // variable for reading the pushbutton status
+    lastState_4 = 0, // variable for reading the pushbutton status
+    lastState_5 = 0, // variable for reading the pushbutton status
+    lastState_6 = 0, // variable for reading the pushbutton status
+    lastState_7 = 0; // variable for reading the pushbutton status
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
@@ -38,8 +56,8 @@ void setup()
   // initialize the LED pin as an output:
   pinMode(LEDPIN, OUTPUT);
   // initialize the sensor pin as an input:
-  pinMode(SENSORPIN, INPUT);
-  digitalWrite(SENSORPIN, HIGH); // turn on the pullup
+  pinMode(SENSORPIN_1, INPUT);
+  digitalWrite(SENSORPIN_1, HIGH); // turn on the pullup
 
   Serial.begin(9600);
 
@@ -83,11 +101,17 @@ void setup()
 void loop()
 {
   // read the state of the pushbutton value:
-  sensorState = digitalRead(SENSORPIN);
+  sensorState_1 = digitalRead(SENSORPIN_1);
+  sensorState_2 = digitalRead(SENSORPIN_2);
+  sensorState_3 = digitalRead(SENSORPIN_3);
+  sensorState_4 = digitalRead(SENSORPIN_4);
+  sensorState_5 = digitalRead(SENSORPIN_5);
+  sensorState_6 = digitalRead(SENSORPIN_6);
+  sensorState_7 = digitalRead(SENSORPIN_7);
 
   // check if the sensor beam is broken
-  // if it is, the sensorState is LOW:
-  if (sensorState == LOW)
+  // if it is, the sensorState_1 is LOW:
+  if (sensorState_1 == LOW)
   {
     // turn LED on:
     digitalWrite(LEDPIN, HIGH);
@@ -97,8 +121,9 @@ void loop()
     // turn LED off:
     digitalWrite(LEDPIN, LOW);
   }
-
-  if (sensorState && !lastState)
+  //
+  // Sensor 1
+  if (sensorState_1 && !lastState_1)
   {
     Serial.println("Unbroken");
     String msgStr = udpIdentifier + "_1" + "_Unbroken";
@@ -108,7 +133,7 @@ void loop()
     Udp.write(msgChar);
     Udp.endPacket();
   }
-  if (!sensorState && lastState)
+  if (!sensorState_1 && lastState_1)
   {
     Serial.println("Broken");
     // UDP LOGIC HERE!!!
@@ -119,7 +144,151 @@ void loop()
     Udp.write(msgChar);
     Udp.endPacket();
   }
-  lastState = sensorState;
+  lastState_1 = sensorState_1;
+  //
+  // Sensor 2
+  if (sensorState_2 && !lastState_2)
+  {
+    Serial.println("Unbroken");
+    String msgStr = udpIdentifier + "_2" + "_Unbroken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  if (!sensorState_2 && lastState_2)
+  {
+    Serial.println("Broken");
+    // UDP LOGIC HERE!!!
+    String msgStr = udpIdentifier + "_2" + "_Broken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  lastState_2 = sensorState_2;
+  //
+  // Sensor 3
+  if (sensorState_3 && !lastState_3)
+  {
+    Serial.println("Unbroken");
+    String msgStr = udpIdentifier + "_3" + "_Unbroken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  if (!sensorState_3 && lastState_3)
+  {
+    Serial.println("Broken");
+    // UDP LOGIC HERE!!!
+    String msgStr = udpIdentifier + "_3" + "_Broken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  lastState_3 = sensorState_3;
+  //
+  // Sensor 4
+  if (sensorState_4 && !lastState_4)
+  {
+    Serial.println("Unbroken");
+    String msgStr = udpIdentifier + "_4" + "_Unbroken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  if (!sensorState_4 && lastState_4)
+  {
+    Serial.println("Broken");
+    // UDP LOGIC HERE!!!
+    String msgStr = udpIdentifier + "_4" + "_Broken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  lastState_4 = sensorState_4;
+  //
+  // Sensor 5
+  if (sensorState_5 && !lastState_5)
+  {
+    Serial.println("Unbroken");
+    String msgStr = udpIdentifier + "_5" + "_Unbroken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  if (!sensorState_5 && lastState_5)
+  {
+    Serial.println("Broken");
+    // UDP LOGIC HERE!!!
+    String msgStr = udpIdentifier + "_5" + "_Broken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  lastState_5 = sensorState_5;
+  //
+  // Sensor 6
+  if (sensorState_6 && !lastState_6)
+  {
+    Serial.println("Unbroken");
+    String msgStr = udpIdentifier + "_6" + "_Unbroken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  if (!sensorState_6 && lastState_6)
+  {
+    Serial.println("Broken");
+    // UDP LOGIC HERE!!!
+    String msgStr = udpIdentifier + "_6" + "_Broken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  lastState_6 = sensorState_6;
+  //
+  // Sensor 7
+  if (sensorState_7 && !lastState_7)
+  {
+    Serial.println("Unbroken");
+    String msgStr = udpIdentifier + "_7" + "_Unbroken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  if (!sensorState_7 && lastState_7)
+  {
+    Serial.println("Broken");
+    // UDP LOGIC HERE!!!
+    String msgStr = udpIdentifier + "_7" + "_Broken";
+    char msgChar[msgStr.length() + 1];
+    strcpy(msgChar, msgStr.c_str());
+    Udp.beginPacket(sPlay, destinationPort);
+    Udp.write(msgChar);
+    Udp.endPacket();
+  }
+  lastState_7 = sensorState_7;
   //--------------------------------->  udp trigger logic here <----------------------
   // // if there's data available, read a packet
   // int packetSize = Udp.parsePacket();
