@@ -34,14 +34,16 @@ int sensorState_1 = 0,
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
-byte mac[] = {
-    0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84};
+byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84}; // Testing_board MAC address
+// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x78}; // Center_Putt MAC address
+// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x7F}; // Ski_Putt_1 MAC address
+// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x76}; // Ski_Putt_2 MAC address
 IPAddress ip(192, 168, 0, 175);
 
 IPAddress sPlay(192, 168, 0, 25);
 
 unsigned int localPort = 8888;        // local port to listen on
-unsigned int destinationPort = 65406; // port we are sending udp message to
+unsigned int destinationPort = 56622; // port we are sending udp message to
 
 // buffers for receiving and sending data
 // char packetBuffer[UDP_TX_PACKET_MAX_SIZE]; // buffer to hold incoming packet,
@@ -58,6 +60,18 @@ void setup()
   // initialize the sensor pin as an input:
   pinMode(SENSORPIN_1, INPUT);
   digitalWrite(SENSORPIN_1, HIGH); // turn on the pullup
+  pinMode(SENSORPIN_2, INPUT);
+  digitalWrite(SENSORPIN_2, HIGH); // turn on the pullup
+  pinMode(SENSORPIN_3, INPUT);
+  digitalWrite(SENSORPIN_3, HIGH); // turn on the pullup
+  pinMode(SENSORPIN_4, INPUT);
+  digitalWrite(SENSORPIN_4, HIGH); // turn on the pullup
+  pinMode(SENSORPIN_5, INPUT);
+  digitalWrite(SENSORPIN_5, HIGH); // turn on the pullup
+  pinMode(SENSORPIN_6, INPUT);
+  digitalWrite(SENSORPIN_6, HIGH); // turn on the pullup
+  pinMode(SENSORPIN_7, INPUT);
+  digitalWrite(SENSORPIN_7, HIGH); // turn on the pullup
 
   Serial.begin(9600);
 
@@ -125,7 +139,7 @@ void loop()
   // Sensor 1
   if (sensorState_1 && !lastState_1)
   {
-    Serial.println("Unbroken");
+    Serial.println("Unbroken_1");
     String msgStr = udpIdentifier + "_1" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
@@ -135,7 +149,7 @@ void loop()
   }
   if (!sensorState_1 && lastState_1)
   {
-    Serial.println("Broken");
+    Serial.println("Broken_1");
     // UDP LOGIC HERE!!!
     String msgStr = udpIdentifier + "_1" + "_Broken";
     char msgChar[msgStr.length() + 1];
@@ -149,7 +163,7 @@ void loop()
   // Sensor 2
   if (sensorState_2 && !lastState_2)
   {
-    Serial.println("Unbroken");
+    Serial.println("Unbroken_2");
     String msgStr = udpIdentifier + "_2" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
@@ -159,7 +173,7 @@ void loop()
   }
   if (!sensorState_2 && lastState_2)
   {
-    Serial.println("Broken");
+    Serial.println("Broken_2");
     // UDP LOGIC HERE!!!
     String msgStr = udpIdentifier + "_2" + "_Broken";
     char msgChar[msgStr.length() + 1];
@@ -173,7 +187,7 @@ void loop()
   // Sensor 3
   if (sensorState_3 && !lastState_3)
   {
-    Serial.println("Unbroken");
+    Serial.println("Unbroken_3");
     String msgStr = udpIdentifier + "_3" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
@@ -183,7 +197,7 @@ void loop()
   }
   if (!sensorState_3 && lastState_3)
   {
-    Serial.println("Broken");
+    Serial.println("Broken_3");
     // UDP LOGIC HERE!!!
     String msgStr = udpIdentifier + "_3" + "_Broken";
     char msgChar[msgStr.length() + 1];
@@ -197,7 +211,7 @@ void loop()
   // Sensor 4
   if (sensorState_4 && !lastState_4)
   {
-    Serial.println("Unbroken");
+    Serial.println("Unbroken_4");
     String msgStr = udpIdentifier + "_4" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
@@ -207,7 +221,7 @@ void loop()
   }
   if (!sensorState_4 && lastState_4)
   {
-    Serial.println("Broken");
+    Serial.println("Broken_4");
     // UDP LOGIC HERE!!!
     String msgStr = udpIdentifier + "_4" + "_Broken";
     char msgChar[msgStr.length() + 1];
@@ -221,7 +235,7 @@ void loop()
   // Sensor 5
   if (sensorState_5 && !lastState_5)
   {
-    Serial.println("Unbroken");
+    Serial.println("Unbroken_5");
     String msgStr = udpIdentifier + "_5" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
@@ -231,7 +245,7 @@ void loop()
   }
   if (!sensorState_5 && lastState_5)
   {
-    Serial.println("Broken");
+    Serial.println("Broken_5");
     // UDP LOGIC HERE!!!
     String msgStr = udpIdentifier + "_5" + "_Broken";
     char msgChar[msgStr.length() + 1];
@@ -245,7 +259,7 @@ void loop()
   // Sensor 6
   if (sensorState_6 && !lastState_6)
   {
-    Serial.println("Unbroken");
+    Serial.println("Unbroken_6");
     String msgStr = udpIdentifier + "_6" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
@@ -255,7 +269,7 @@ void loop()
   }
   if (!sensorState_6 && lastState_6)
   {
-    Serial.println("Broken");
+    Serial.println("Broken_6");
     // UDP LOGIC HERE!!!
     String msgStr = udpIdentifier + "_6" + "_Broken";
     char msgChar[msgStr.length() + 1];
@@ -269,7 +283,7 @@ void loop()
   // Sensor 7
   if (sensorState_7 && !lastState_7)
   {
-    Serial.println("Unbroken");
+    Serial.println("Unbroken_7");
     String msgStr = udpIdentifier + "_7" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
@@ -279,7 +293,7 @@ void loop()
   }
   if (!sensorState_7 && lastState_7)
   {
-    Serial.println("Broken");
+    Serial.println("Broken_7");
     // UDP LOGIC HERE!!!
     String msgStr = udpIdentifier + "_7" + "_Broken";
     char msgChar[msgStr.length() + 1];
@@ -289,35 +303,6 @@ void loop()
     Udp.endPacket();
   }
   lastState_7 = sensorState_7;
-  //--------------------------------->  udp trigger logic here <----------------------
-  // // if there's data available, read a packet
-  // int packetSize = Udp.parsePacket();
-  // if (packetSize)
-  // {
-  //   Serial.print("Received packet of size ");
-  //   Serial.println(packetSize);
-  //   Serial.print("From ");
-  //   IPAddress remote = Udp.remoteIP();
-  //   for (int i = 0; i < 4; i++)
-  //   {
-  //     Serial.print(remote[i], DEC);
-  //     if (i < 3)
-  //     {
-  //       Serial.print(".");
-  //     }
-  //   }
-  //   Serial.print(", port ");
-  //   Serial.println(Udp.remotePort());
-
-  //   // read the packet into packetBuffer
-  //   Udp.read(packetBuffer, UDP_TX_PACKET_MAX_SIZE);
-  //   Serial.println("Contents:");
-  //   Serial.println(packetBuffer);
-
-  //   // send a reply to the IP address and port that sent us the packet we received
-  //   Udp.beginPacket(Udp.remoteIP(), Udp.remotePort());
-  //   Udp.write(ReplyBuffer);
-  //   Udp.endPacket();
-  // }
+  // Delay to slow down processing
   delay(10);
 }
