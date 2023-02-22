@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xrgb>
+  <models>
+    <model DisplayAs="Circle" StartSide="B" Dir="L" Antialias="1" PixelSize="2" Transparency="0" parm1="1" parm3="50" InsideOut="0" LayoutGroup="Default" name="Head 1" StringType="GRBW Nodes" RGBWHandling="R=G=B -&gt; W" parm2="78" Controller="Nemours_Pixels" WorldPosX="429.0772" WorldPosY="657.0259" WorldPosZ="0.0000" ScaleX="0.3799" ScaleY="0.6883" ScaleZ="0.0130" RotateX="0.00000000" RotateY="0.00000000" RotateZ="0.00000000" versionNumber="5" StartChannel="!Nemours_Pixels:1031">
+      <ControllerConnection Protocol="ws2811" Port="5" gamma="1.0" colorOrder="GRBW"/>
+    </model>
+    <model DisplayAs="Circle" StartSide="B" Dir="L" Antialias="1" PixelSize="2" Transparency="0" parm1="1" parm3="50" InsideOut="0" LayoutGroup="Default" name="Head 2" StringType="GRBW Nodes" RGBWHandling="R=G=B -&gt; W" parm2="61" Controller="Nemours_Pixels" WorldPosX="799.7578" WorldPosY="653.4996" WorldPosZ="0.0000" ScaleX="0.4979" ScaleY="0.9310" ScaleZ="0.0167" RotateX="0.00000000" RotateY="0.00000000" RotateZ="0.00000000" versionNumber="5" StartChannel="!Nemours_Pixels:787">
+      <ControllerConnection Protocol="ws2811" Port="4" colorOrder="GRBW"/>
+    </model>
+    <model DisplayAs="Single Line" StringType="RGB Nodes" StartSide="B" Dir="L" Antialias="1" PixelSize="2" Transparency="0" parm1="1" parm3="1" LayoutGroup="Default" name="Outer Front" parm2="293" Controller="Nemours_Pixels" WorldPosX="291.5346" WorldPosY="590.2250" WorldPosZ="0.0000" X2="648.132935" Y2="3.753662" Z2="0.000000" versionNumber="5" StartChannel="!Nemours_Pixels:1343">
+      <ControllerConnection Protocol="ws2811" Port="6"/>
+    </model>
+    <model DisplayAs="Circle" StringType="RGB Nodes" Antialias="1" PixelSize="2" Transparency="0" parm1="1" parm3="50" LayoutGroup="Default" name="Inner Center" parm2="86" Dir="L" StartSide="B" InsideOut="0" Controller="Nemours_Pixels" WorldPosX="613.0297" WorldPosY="427.5047" WorldPosZ="0.0000" ScaleX="0.6620" ScaleY="2.0868" ScaleZ="0.0118" RotateX="0.00000000" RotateY="0.00000000" RotateZ="21.00000000" versionNumber="5" StartChannel="!Nemours_Pixels:229">
+      <ControllerConnection Protocol="ws2811" Port="2"/>
+    </model>
+    <model DisplayAs="Circle" StringType="RGB Nodes" Antialias="1" PixelSize="2" Transparency="0" parm1="1" parm3="50" LayoutGroup="Default" name="Inner Right" Dir="R" StartSide="B" InsideOut="0" parm2="76" Controller="Nemours_Pixels" WorldPosX="768.1702" WorldPosY="438.9892" WorldPosZ="0.0000" ScaleX="0.6846" ScaleY="2.8406" ScaleZ="0.0133" RotateX="0.00000000" RotateY="0.00000000" RotateZ="-19.00000000" versionNumber="5" StartChannel="!Nemours_Pixels:1">
+      <ControllerConnection Protocol="ws2811" Port="1"/>
+    </model>
+    <model DisplayAs="Circle" StringType="RGB Nodes" Antialias="1" PixelSize="2" Transparency="0" parm1="1" parm3="50" LayoutGroup="Default" name="Inner Left" Dir="R" StartSide="B" InsideOut="0" parm2="100" Controller="Nemours_Pixels" WorldPosX="427.1079" WorldPosY="438.4601" WorldPosZ="0.0000" ScaleX="0.6776" ScaleY="2.3619" ScaleZ="0.0101" RotateX="0.00000000" RotateY="0.00000000" RotateZ="-14.00000000" versionNumber="5" StartChannel="!Nemours_Pixels:487">
+      <ControllerConnection Protocol="ws2811" Port="3"/>
+    </model>
+    <model DisplayAs="Single Line" StringType="RGB Nodes" StartSide="B" Dir="L" Antialias="1" PixelSize="2" Transparency="0" parm1="1" parm3="1" LayoutGroup="Default" parm2="293" name="Outer Rear" Controller="Nemours_Pixels" WorldPosX="243.9883" WorldPosY="297.4389" WorldPosZ="0.0000" X2="703.186707" Y2="0.000000" Z2="0.000000" versionNumber="5" StartChannel="!Nemours_Pixels:2222">
+      <ControllerConnection Protocol="ws2811" Port="7"/>
+    </model>
+  </models>
+  <view_objects>
+    <view_object DisplayAs="Gridlines" LayoutGroup="Default" name="Gridlines" GridLineSpacing="50" GridWidth="2000.0" GridHeight="1000.0" Active="1" WorldPosX="0.0000" WorldPosY="0.0000" WorldPosZ="0.0000" ScaleX="1.0000" ScaleY="1.0000" ScaleZ="1.0000" RotateX="-90.00000000" RotateY="-0.00000000" RotateZ="0.00000000" versionNumber="5"/>
+  </view_objects>
+  <effects version="0007"/>
+  <views/>
+  <palettes/>
+  <modelGroups>
+    <modelGroup selected="0" name="All" layout="minimalGrid" GridSize="400" LayoutGroup="Default" models="Inner Center,Head 1,Head 2,Inner Left,Outer Front,Inner Right,Outer Rear"/>
+    <modelGroup selected="0" name="Heads" layout="minimalGrid" GridSize="400" LayoutGroup="Default" models="Head 1,Head 2"/>
+    <modelGroup selected="0" name="Inners" layout="minimalGrid" GridSize="400" LayoutGroup="Default" models="Inner Center,Inner Left,Inner Right"/>
+    <modelGroup selected="0" name="Outer" layout="minimalGrid" GridSize="400" LayoutGroup="Default" models="Outer Front,Outer Rear"/>
+    <modelGroup selected="0" name="Left" layout="minimalGrid" GridSize="400" LayoutGroup="Default" models="Head 1,Inner Left"/>
+    <modelGroup selected="0" name="Center" layout="minimalGrid" GridSize="400" LayoutGroup="Default" models="Inner Center"/>
+    <modelGroup selected="0" name="Right" layout="minimalGrid" GridSize="400" LayoutGroup="Default" models="Inner Right"/>
+  </modelGroups>
+  <layoutGroups/>
+  <perspectives current="Default Perspective">
+    <perspective name="Default Perspective" settings="layout2|name=ModelPreview;caption=Model Preview;state=6293500;dir=4;layer=1;row=0;pos=0;prop=100000;bestw=250;besth=250;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=HousePreview;caption=House Preview;state=6293500;dir=4;layer=1;row=0;pos=1;prop=100000;bestw=250;besth=250;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=EffectAssist;caption=Effect Assist;state=2099198;dir=4;layer=1;row=0;pos=2;prop=100000;bestw=250;besth=250;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=DisplayElements;caption=Display Elements;state=6293503;dir=4;layer=0;row=0;pos=0;prop=100000;bestw=600;besth=400;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=600;floath=400|name=Perspectives;caption=Perspectives;state=2099198;dir=4;layer=1;row=0;pos=0;prop=100000;bestw=136;besth=130;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Effect;caption=Effect Settings;state=2099196;dir=4;layer=0;row=1;pos=0;prop=100000;bestw=426;besth=766;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=SelectEffect;caption=Select Effects;state=2099198;dir=4;layer=1;row=0;pos=0;prop=100000;bestw=384;besth=273;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=EffectDropper;caption=Effects;state=2099198;dir=1;layer=0;row=0;pos=0;prop=100000;bestw=1044;besth=696;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ValueCurveDropper;caption=Value Curves;state=2099198;dir=1;layer=0;row=0;pos=0;prop=100000;bestw=40;besth=40;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ColourDropper;caption=Colours;state=2099198;dir=1;layer=0;row=0;pos=0;prop=100000;bestw=20;besth=20;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Jukebox;caption=Jukebox;state=2099198;dir=1;layer=0;row=0;pos=0;prop=100000;bestw=100;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=Color;caption=Color;state=2099196;dir=1;layer=0;row=0;pos=0;prop=100000;bestw=334;besth=341;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=LayerTiming;caption=Layer Blending;state=2099196;dir=1;layer=0;row=0;pos=1;prop=100000;bestw=266;besth=276;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=LayerSettings;caption=Layer Settings;state=2099196;dir=1;layer=0;row=0;pos=2;prop=100000;bestw=267;besth=393;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=SequenceVideo;caption=Sequence Video;state=2099199;dir=4;layer=0;row=0;pos=0;prop=100000;bestw=280;besth=169;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=208;floaty=208;floatw=296;floath=208|name=Main Sequencer;caption=Main Sequencer;state=768;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=118;besth=50;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(4,1,0)=252|dock_size(4,0,1)=350|dock_size(1,0,0)=133|dock_size(5,0,0)=120|" version="2.0"/>
+  </perspectives>
+  <settings>
+    <previewWidth value="1280"/>
+    <previewHeight value="720"/>
+  </settings>
+  <colors>
+    <DisabledEffect Red="200" Green="200" Blue="0"/>
+    <EffectDefault Red="192" Green="192" Blue="192"/>
+    <EffectSelected Red="204" Green="102" Blue="255"/>
+    <EffectSelectedDisabled Red="200" Green="200" Blue="64"/>
+    <EffectSelectedFixed Red="255" Green="128" Blue="0"/>
+    <EffectSelectedLocked Red="200" Green="0" Blue="64"/>
+    <GridDashes Red="255" Green="255" Blue="0"/>
+    <Gridlines Red="40" Green="40" Blue="40"/>
+    <LabelOutline Red="103" Green="103" Blue="103"/>
+    <Labels Red="255" Green="255" Blue="204"/>
+    <LayoutDashes Red="255" Green="255" Blue="0"/>
+    <LockedEffect Red="200" Green="0" Blue="0"/>
+    <ModelDefault Red="211" Green="211" Blue="211"/>
+    <ModelOverlap Red="255" Green="0" Blue="0"/>
+    <ModelSelected Red="255" Green="255" Blue="0"/>
+    <Phonemes Red="255" Green="181" Blue="218"/>
+    <Phrases Red="153" Green="255" Blue="153"/>
+    <ReferenceEffect Red="255" Green="0" Blue="255"/>
+    <ReferenceEffectDisabled Red="255" Green="255" Blue="127"/>
+    <ReferenceEffectLocked Red="255" Green="0" Blue="127"/>
+    <RowHeaderSelected Red="130" Green="178" Blue="207"/>
+    <Timing1 Red="0" Green="255" Blue="255"/>
+    <Timing2 Red="255" Green="0" Blue="0"/>
+    <Timing3 Red="0" Green="255" Blue="0"/>
+    <Timing4 Red="0" Green="0" Blue="255"/>
+    <Timing5 Red="255" Green="255" Blue="0"/>
+    <TimingDefault Red="255" Green="255" Blue="255"/>
+    <Waveform Red="130" Green="178" Blue="207"/>
+    <WaveformSelected Red="0" Green="0" Blue="200"/>
+    <WaveformSelectedEffect Red="255" Green="128" Blue="0"/>
+    <Words Red="255" Green="218" Blue="145"/>
+  </colors>
+  <Viewpoints/>
+</xrgb>
