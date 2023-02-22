@@ -1,6 +1,8 @@
 #include <Arduino.h>
+#include <ArduinoHttpClient.h>
 #include <Ethernet.h>
 #include <EthernetUdp.h>
+#include <SPI.h>
 
 #define LEDPIN 13
 // Pin 13 : Arduino has an LED connected on pin 13
@@ -17,103 +19,117 @@
 #define SENSORPIN_7 9
 
 // variables will change:
-int sensorState_1 = 0,
-    sensorState_2 = 0,
-    sensorState_3 = 0,
-    sensorState_4 = 0,
-    sensorState_5 = 0,
-    sensorState_6 = 0,
-    sensorState_7 = 0,
-    lastState_1 = 0, // variable for reading the pushbutton status
-    lastState_2 = 0, // variable for reading the pushbutton status
-    lastState_3 = 0, // variable for reading the pushbutton status
-    lastState_4 = 0, // variable for reading the pushbutton status
-    lastState_5 = 0, // variable for reading the pushbutton status
-    lastState_6 = 0, // variable for reading the pushbutton status
-    lastState_7 = 0; // variable for reading the pushbutton status
+int sensorState_1 = 0, sensorState_2 = 0, sensorState_3 = 0, sensorState_4 = 0,
+    sensorState_5 = 0, sensorState_6 = 0, sensorState_7 = 0,
+    lastState_1 = 0,  // variable for reading the pushbutton status
+    lastState_2 = 0,  // variable for reading the pushbutton status
+    lastState_3 = 0,  // variable for reading the pushbutton status
+    lastState_4 = 0,  // variable for reading the pushbutton status
+    lastState_5 = 0,  // variable for reading the pushbutton status
+    lastState_6 = 0,  // variable for reading the pushbutton status
+    lastState_7 = 0;  // variable for reading the pushbutton status
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
-byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84}; // Testing_board MAC address
+byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84};  // Testing_board MAC address
 // byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x78}; // Center_Putt MAC address
 // byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x7F}; // Ski_Putt_1 MAC address
 // byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x76}; // Ski_Putt_2 MAC address
 IPAddress ip(192, 168, 0, 175);
-
 IPAddress sPlay(192, 168, 0, 25);
 
-unsigned int localPort = 8888;        // local port to listen on
-unsigned int destinationPort = 56622; // port we are sending udp message to
+unsigned int UdpLocalPort = 8888;         // local port to listen on
+unsigned int UdpDestinationPort = 56622;  // port we are sending udp message to
 
-// buffers for receiving and sending data
-// char packetBuffer[UDP_TX_PACKET_MAX_SIZE]; // buffer to hold incoming packet,
-// char ReplyBuffer[] = "acknowledged";       // a string to send back
-String udpIdentifier = "bbSensor"; // the string to precede a closure packet
+// String to prepend any message we send
+String UdpIdentifier = "bbSensor";  // the string to precede a closure packet
 
 // An EthernetUDP instance to let us send and receive packets over UDP
 EthernetUDP Udp;
 
-void setup()
-{
+// Initialize the Ethernet client library
+// with the IP address and port of the server
+// that you want to connect to (port 80 is default for HTTP):
+IPAddress fpp(192, 168, 0, 101);        // numeric IP for our local FPP
+unsigned int httpDestinationPort = 80;  // destination of our HTTP requests
+
+EthernetClient ethClient;
+HttpClient client = HttpClient(ethClient, sPlay);
+
+void runRainbow() {
+  //------------------------>  HTTP Trigger Logic here <-----------------------
+  String contentType = "application/json";
+  // client.get("/api/playlist/rainbow/start");
+  client.get("/");
+
+  // read the status code and body of the response
+  int statusCode = client.responseStatusCode();
+  String response = client.responseBody();
+  Serial.print("Request Dest: ");
+  Serial.println(fpp);
+  Serial.print("Status code: ");
+  Serial.println(statusCode);
+  Serial.print("Response: ");
+  Serial.println(response);
+}
+
+void setup() {
+  //--------------------------------->  IR Beam Break Setup here
+  //<----------------------
   // initialize the LED pin as an output:
   pinMode(LEDPIN, OUTPUT);
   // initialize the sensor pin as an input:
   pinMode(SENSORPIN_1, INPUT);
-  digitalWrite(SENSORPIN_1, HIGH); // turn on the pullup
+  digitalWrite(SENSORPIN_1, HIGH);  // turn on the pullup
   pinMode(SENSORPIN_2, INPUT);
-  digitalWrite(SENSORPIN_2, HIGH); // turn on the pullup
+  digitalWrite(SENSORPIN_2, HIGH);  // turn on the pullup
   pinMode(SENSORPIN_3, INPUT);
-  digitalWrite(SENSORPIN_3, HIGH); // turn on the pullup
+  digitalWrite(SENSORPIN_3, HIGH);  // turn on the pullup
   pinMode(SENSORPIN_4, INPUT);
-  digitalWrite(SENSORPIN_4, HIGH); // turn on the pullup
+  digitalWrite(SENSORPIN_4, HIGH);  // turn on the pullup
   pinMode(SENSORPIN_5, INPUT);
-  digitalWrite(SENSORPIN_5, HIGH); // turn on the pullup
+  digitalWrite(SENSORPIN_5, HIGH);  // turn on the pullup
   pinMode(SENSORPIN_6, INPUT);
-  digitalWrite(SENSORPIN_6, HIGH); // turn on the pullup
+  digitalWrite(SENSORPIN_6, HIGH);  // turn on the pullup
   pinMode(SENSORPIN_7, INPUT);
-  digitalWrite(SENSORPIN_7, HIGH); // turn on the pullup
+  digitalWrite(SENSORPIN_7, HIGH);  // turn on the pullup
 
   Serial.begin(9600);
 
-  //--------------------------------->  udp trigger logic here <----------------------
+  // ------------------------>  Ethernet Setup <----------------------
   // You can use Ethernet.init(pin) to configure the CS pin
-  Ethernet.init(10); // Most Arduino shields
-  // Ethernet.init(5);   // MKR ETH Shield
-  // Ethernet.init(0);   // Teensy 2.0
-  // Ethernet.init(20);  // Teensy++ 2.0
-  // Ethernet.init(15);  // ESP8266 with Adafruit FeatherWing Ethernet
-  // Ethernet.init(33);  // ESP32 with Adafruit FeatherWing Ethernet
+  Ethernet.init(10);  // Most Arduino shields
 
   // start the Ethernet
   Ethernet.begin(mac, ip);
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
-  while (!Serial)
-  {
-    ; // wait for serial port to connect. Needed for native USB port only
+  while (!Serial) {
+    ;  // wait for serial port to connect. Needed for native USB port only
   }
 
   // Check for Ethernet hardware present
-  if (Ethernet.hardwareStatus() == EthernetNoHardware)
-  {
-    Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
-    while (true)
-    {
-      delay(1); // do nothing, no point running without Ethernet hardware
+  if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+    Serial.println(
+        "Ethernet shield was not found.  Sorry, can't run without hardware. "
+        ":(");
+    while (true) {
+      delay(1);  // do nothing, no point running without Ethernet hardware
     }
   }
-  if (Ethernet.linkStatus() == LinkOFF)
-  {
+  if (Ethernet.linkStatus() == LinkOFF) {
     Serial.println("Ethernet cable is not connected.");
   }
 
+  // ------------------------>  UDP Trigger Setup  <------------------------
   // start UDP
-  Udp.begin(localPort);
+  Udp.begin(UdpLocalPort);
+
+  //------------------------>  HTTP Client Setup <-----------------------
 }
 
-void loop()
-{
+void loop() {
   // read the state of the pushbutton value:
   sensorState_1 = digitalRead(SENSORPIN_1);
   sensorState_2 = digitalRead(SENSORPIN_2);
@@ -124,185 +140,170 @@ void loop()
   sensorState_7 = digitalRead(SENSORPIN_7);
 
   // check if the sensor beam is broken
-  // if it is, the sensorState_1 is LOW:
-  if (sensorState_1 == LOW)
-  {
+  // if it is, the sensorState_1 is LOW
+  if (sensorState_1 == LOW) {
     // turn LED on:
     digitalWrite(LEDPIN, HIGH);
-  }
-  else
-  {
+  } else {
     // turn LED off:
     digitalWrite(LEDPIN, LOW);
   }
   //
   // Sensor 1
-  if (sensorState_1 && !lastState_1)
-  {
+  if (sensorState_1 && !lastState_1) {
     Serial.println("Unbroken_1");
-    String msgStr = udpIdentifier + "_1" + "_Unbroken";
+    String msgStr = UdpIdentifier + "_1" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
-  if (!sensorState_1 && lastState_1)
-  {
+  if (!sensorState_1 && lastState_1) {
     Serial.println("Broken_1");
     // UDP LOGIC HERE!!!
-    String msgStr = udpIdentifier + "_1" + "_Broken";
+    String msgStr = UdpIdentifier + "_1" + "_Broken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
   lastState_1 = sensorState_1;
   //
   // Sensor 2
-  if (sensorState_2 && !lastState_2)
-  {
+  if (sensorState_2 && !lastState_2) {
     Serial.println("Unbroken_2");
-    String msgStr = udpIdentifier + "_2" + "_Unbroken";
+    String msgStr = UdpIdentifier + "_2" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
-  if (!sensorState_2 && lastState_2)
-  {
+  if (!sensorState_2 && lastState_2) {
     Serial.println("Broken_2");
     // UDP LOGIC HERE!!!
-    String msgStr = udpIdentifier + "_2" + "_Broken";
+    String msgStr = UdpIdentifier + "_2" + "_Broken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
   lastState_2 = sensorState_2;
   //
   // Sensor 3
-  if (sensorState_3 && !lastState_3)
-  {
+  if (sensorState_3 && !lastState_3) {
     Serial.println("Unbroken_3");
-    String msgStr = udpIdentifier + "_3" + "_Unbroken";
+    String msgStr = UdpIdentifier + "_3" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
-  if (!sensorState_3 && lastState_3)
-  {
+  if (!sensorState_3 && lastState_3) {
     Serial.println("Broken_3");
     // UDP LOGIC HERE!!!
-    String msgStr = udpIdentifier + "_3" + "_Broken";
+    String msgStr = UdpIdentifier + "_3" + "_Broken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
+    runRainbow();
   }
   lastState_3 = sensorState_3;
   //
   // Sensor 4
-  if (sensorState_4 && !lastState_4)
-  {
+  if (sensorState_4 && !lastState_4) {
     Serial.println("Unbroken_4");
-    String msgStr = udpIdentifier + "_4" + "_Unbroken";
+    String msgStr = UdpIdentifier + "_4" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
-  if (!sensorState_4 && lastState_4)
-  {
+  if (!sensorState_4 && lastState_4) {
     Serial.println("Broken_4");
     // UDP LOGIC HERE!!!
-    String msgStr = udpIdentifier + "_4" + "_Broken";
+    String msgStr = UdpIdentifier + "_4" + "_Broken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
   lastState_4 = sensorState_4;
   //
   // Sensor 5
-  if (sensorState_5 && !lastState_5)
-  {
+  if (sensorState_5 && !lastState_5) {
     Serial.println("Unbroken_5");
-    String msgStr = udpIdentifier + "_5" + "_Unbroken";
+    String msgStr = UdpIdentifier + "_5" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
-  if (!sensorState_5 && lastState_5)
-  {
+  if (!sensorState_5 && lastState_5) {
     Serial.println("Broken_5");
     // UDP LOGIC HERE!!!
-    String msgStr = udpIdentifier + "_5" + "_Broken";
+    String msgStr = UdpIdentifier + "_5" + "_Broken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
   lastState_5 = sensorState_5;
   //
   // Sensor 6
-  if (sensorState_6 && !lastState_6)
-  {
+  if (sensorState_6 && !lastState_6) {
     Serial.println("Unbroken_6");
-    String msgStr = udpIdentifier + "_6" + "_Unbroken";
+    String msgStr = UdpIdentifier + "_6" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
-  if (!sensorState_6 && lastState_6)
-  {
+  if (!sensorState_6 && lastState_6) {
     Serial.println("Broken_6");
     // UDP LOGIC HERE!!!
-    String msgStr = udpIdentifier + "_6" + "_Broken";
+    String msgStr = UdpIdentifier + "_6" + "_Broken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
   lastState_6 = sensorState_6;
   //
   // Sensor 7
-  if (sensorState_7 && !lastState_7)
-  {
+  if (sensorState_7 && !lastState_7) {
     Serial.println("Unbroken_7");
-    String msgStr = udpIdentifier + "_7" + "_Unbroken";
+    String msgStr = UdpIdentifier + "_7" + "_Unbroken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
-  if (!sensorState_7 && lastState_7)
-  {
+  if (!sensorState_7 && lastState_7) {
     Serial.println("Broken_7");
     // UDP LOGIC HERE!!!
-    String msgStr = udpIdentifier + "_7" + "_Broken";
+    String msgStr = UdpIdentifier + "_7" + "_Broken";
     char msgChar[msgStr.length() + 1];
     strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, destinationPort);
+    Udp.beginPacket(sPlay, UdpDestinationPort);
     Udp.write(msgChar);
     Udp.endPacket();
   }
   lastState_7 = sensorState_7;
+
   // Delay to slow down processing
   delay(10);
 }
