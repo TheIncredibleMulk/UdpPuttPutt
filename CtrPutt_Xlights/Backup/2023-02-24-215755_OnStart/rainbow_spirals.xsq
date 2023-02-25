@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsequence BaseChannel="0" ChanCtrlBasic="0" ChanCtrlColor="0" FixedPointTiming="1" ModelBlending="true">
+  <head>
+    <version>2022.06</version>
+    <author/>
+    <author-email/>
+    <author-website/>
+    <song/>
+    <artist/>
+    <album/>
+    <MusicURL/>
+    <comment/>
+    <sequenceTiming>50 ms</sequenceTiming>
+    <sequenceType>Animation</sequenceType>
+    <mediaFile/>
+    <sequenceDuration>5</sequenceDuration>
+    <imageDir/>
+  </head>
+  <nextid>1</nextid>
+  <Jukebox/>
+  <ColorPalettes>
+    <ColorPalette>C_BUTTON_Palette1=#FFFFFF,C_BUTTON_Palette2=#FF0000,C_BUTTON_Palette3=#00FF00,C_BUTTON_Palette4=#0000FF,C_BUTTON_Palette5=#FFFF00,C_BUTTON_Palette6=#000000,C_BUTTON_Palette7=#FF00FF,C_BUTTON_Palette8=#00D1FF,C_CHECKBOX_Palette2=1,C_CHECKBOX_Palette3=1,C_CHECKBOX_Palette4=1,C_CHECKBOX_Palette5=1,C_CHECKBOX_Palette7=1,C_CHECKBOX_Palette8=1</ColorPalette>
+  </ColorPalettes>
+  <EffectDB>
+    <Effect>E_CHECKBOX_Spirals_3D=0,E_CHECKBOX_Spirals_Blend=0,E_CHECKBOX_Spirals_Grow=0,E_CHECKBOX_Spirals_Shrink=0,E_SLIDER_Spirals_Count=1,E_SLIDER_Spirals_Rotation=20,E_SLIDER_Spirals_Thickness=100,E_TEXTCTRL_Spirals_Movement=1.6,T_TEXTCTRL_Fadein=.2,T_TEXTCTRL_Fadeout=1</Effect>
+  </EffectDB>
+  <DataLayers>
+    <DataLayer lor_params="3020953" channel_offset="0" num_channels="0" num_frames="0" data="&lt;rendered: erase-mode&gt;" source="&lt;auto-generated&gt;" name="Nutcracker"/>
+  </DataLayers>
+  <DisplayElements>
+    <Element collapsed="0" type="timing" name="New Timing" visible="1" views="Master View" active="1"/>
+    <Element collapsed="0" type="model" name="All" visible="1"/>
+    <Element collapsed="0" type="model" name="Heads" visible="1"/>
+    <Element collapsed="0" type="model" name="Inners" visible="1"/>
+    <Element collapsed="0" type="model" name="Outer" visible="1"/>
+    <Element collapsed="0" type="model" name="Left" visible="1"/>
+    <Element collapsed="0" type="model" name="Center" visible="1"/>
+    <Element collapsed="0" type="model" name="Right" visible="1"/>
+    <Element collapsed="0" type="model" name="Head 1" visible="1"/>
+    <Element collapsed="0" type="model" name="Head 2" visible="1"/>
+    <Element collapsed="0" type="model" name="Outer Front" visible="1"/>
+    <Element collapsed="0" type="model" name="Inner Center" visible="1"/>
+    <Element collapsed="0" type="model" name="Inner Right" visible="1"/>
+    <Element collapsed="0" type="model" name="Inner Left" visible="1"/>
+    <Element collapsed="0" type="model" name="Outer Rear" visible="1"/>
+  </DisplayElements>
+  <ElementEffects>
+    <Element type="timing" name="New Timing">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="All">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Heads">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Inners">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Outer">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Left">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Center">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Right">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Head 1">
+      <EffectLayer>
+        <Effect ref="0" name="Spirals" selected="1" startTime="0" endTime="5000" palette="0"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Head 2">
+      <EffectLayer>
+        <Effect ref="0" name="Spirals" selected="1" startTime="0" endTime="5000" palette="0"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Outer Front">
+      <EffectLayer>
+        <Effect ref="0" name="Spirals" selected="1" startTime="0" endTime="5000" palette="0"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Inner Center">
+      <EffectLayer>
+        <Effect ref="0" name="Spirals" selected="1" startTime="0" endTime="5000" palette="0"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Inner Right">
+      <EffectLayer>
+        <Effect ref="0" name="Spirals" selected="1" startTime="0" endTime="5000" palette="0"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Inner Left">
+      <EffectLayer>
+        <Effect ref="0" name="Spirals" selected="1" startTime="0" endTime="5000" palette="0"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Outer Rear">
+      <EffectLayer>
+        <Effect ref="0" name="Spirals" selected="1" startTime="0" endTime="5000" palette="0"/>
+      </EffectLayer>
+    </Element>
+  </ElementEffects>
+  <lastView>0</lastView>
+  <TimingTags>
+    <Tag number="0" position="-1"/>
+    <Tag number="1" position="-1"/>
+    <Tag number="2" position="-1"/>
+    <Tag number="3" position="-1"/>
+    <Tag number="4" position="-1"/>
+    <Tag number="5" position="-1"/>
+    <Tag number="6" position="-1"/>
+    <Tag number="7" position="-1"/>
+    <Tag number="8" position="-1"/>
+    <Tag number="9" position="-1"/>
+  </TimingTags>
+</xsequence>
