@@ -23,7 +23,7 @@ unsigned long sensorMillis_1 = 0, sensorMillis_2 = 0, sensorMillis_3 = 0,
               sensorMillis_4 = 0, sensorMillis_5 = 0, sensorMillis_6 = 0,
               sensorMillis_7 = 0;
 // Time we wait before we set up another trigger
-int debounceTime = 15000;
+unsigned long debounceTime = 15000;
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
@@ -35,11 +35,14 @@ IPAddress ip(192, 168, 0, 175);  // The ip of the arduino's ethernet shield
 
 IPAddress sPlay(192, 168, 0, 10);  // The ip address of the sPlay in the system
 
-unsigned int UdpLocalPort = 8888;         // local port to listen on
-unsigned int UdpDestinationPort = 56622;  // port we are sending udp message to
+unsigned int UdpLocalPort = 8888;        // local port to listen on
+unsigned int UdpDestinationPort = 5000;  // port we are sending udp message to
 
 // String to prepend any message we send
 String UdpIdentifier = "bbSensor";  // the string to precede a closure packet
+String UdpRainbow = "rainbow";
+String UdpPinWheel = "nemoursPinWheel";
+char packetBuffer[UDP_TX_PACKET_MAX_SIZE];  // buffer to hold incoming packet
 
 // An EthernetUDP instance to let us send and receive packets over UDP
 EthernetUDP Udp;
@@ -65,10 +68,27 @@ String ipStr = IpAddress2String(ip);
 void runRainbow() {
   // if you get a connection, report back via serial:
   if (client.connect(fpp, httpDestinationPort)) {
-    Serial.print("connected to ");
+    Serial.print("Http rainbow connected to ");
     Serial.println(client.remoteIP());
     // Make a HTTP request:
     client.println("GET /api/playlist/rainbow/start HTTP/1.1");
+    client.print("Host: ");
+    client.println(ipStr);
+    client.println("Connection: close");
+    client.println();
+  } else {
+    // if you didn't get a connection to the server:
+    Serial.println("connection failed");
+  }
+}
+
+void runPinWheel() {
+  // if you get a connection, report back via serial:
+  if (client.connect(fpp, httpDestinationPort)) {
+    Serial.print("Http PinWheel connected to ");
+    Serial.println(client.remoteIP());
+    // Make a HTTP request:
+    client.println("GET /api/playlist/nemours/start HTTP/1.1");
     client.print("Host: ");
     client.println(ipStr);
     client.println("Connection: close");
@@ -143,6 +163,27 @@ void loop() {
   sensorState_5 = digitalRead(SENSORPIN_5);
   sensorState_6 = digitalRead(SENSORPIN_6);
   sensorState_7 = digitalRead(SENSORPIN_7);
+  //
+  // Read UDP packet if available
+  int udpPacket = Udp.parsePacket();
+  if (udpPacket) {
+    Serial.print("Receive Packet From ");
+    Serial.print(Udp.remoteIP());
+    Serial.print(":");
+    Serial.println(Udp.remotePort());
+    // read the packet info packetBuffer
+    Udp.read(packetBuffer, UDP_TX_PACKET_MAX_SIZE);
+    Serial.println("Contents:");
+    Serial.println(packetBuffer);
+    String pkt = packetBuffer;
+    pkt.trim();
+    if (pkt == UdpPinWheel) {
+      runPinWheel();
+    };
+    if (pkt == UdpRainbow) {
+      runRainbow();
+    };
+  }
 
   //
   // Sensor 1
