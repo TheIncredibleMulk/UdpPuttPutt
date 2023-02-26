@@ -27,26 +27,13 @@ unsigned long debounceTime = 15000;
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
-// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84};  // Testing_board MAC
+byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84};  // Testing_board MAC
 // address
-byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x78};  // Center_Putt MAC address
-// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x7F}; // Ski_Putt_1 MAC address
-// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x76}; // Ski_Putt_2 MAC address
+// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x78};  // Center_Putt MAC
+// address byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x7F}; // Ski_Putt_1 MAC
+// address byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x76}; // Ski_Putt_2 MAC
+// address
 IPAddress ip(192, 168, 0, 175);  // The ip of the arduino's ethernet shield
-
-IPAddress sPlay(192, 168, 0, 10);  // The ip address of the sPlay in the system
-
-unsigned int UdpLocalPort = 8888;        // local port to listen on
-unsigned int UdpDestinationPort = 5000;  // port we are sending udp message to
-
-// String to prepend any message we send
-String UdpIdentifier = "bbSensor";  // the string to precede a closure packet
-String UdpRainbow = "rainbow";
-String UdpPinWheel = "nemoursPinWheel";
-char packetBuffer[UDP_TX_PACKET_MAX_SIZE];  // buffer to hold incoming packet
-
-// An EthernetUDP instance to let us send and receive packets over UDP
-EthernetUDP Udp;
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server
@@ -83,13 +70,13 @@ void runRainbow() {
   }
 }
 
-void runPinWheel() {
+void hole1() {
   // if you get a connection, report back via serial:
   if (client.connect(fpp, httpDestinationPort)) {
-    Serial.print("Http PinWheel connected to ");
+    Serial.print("Http rainbow connected to ");
     Serial.println(client.remoteIP());
     // Make a HTTP request:
-    client.println("GET /api/playlist/nemours/start HTTP/1.1");
+    client.println("GET /api/playlist/hole1/start HTTP/1.1");
     client.print("Host: ");
     client.println(ipStr);
     client.println("Connection: close");
@@ -100,6 +87,90 @@ void runPinWheel() {
   }
 }
 
+void hole2() {
+  // if you get a connection, report back via serial:
+  if (client.connect(fpp, httpDestinationPort)) {
+    Serial.print("Http rainbow connected to ");
+    Serial.println(client.remoteIP());
+    // Make a HTTP request:
+    client.println("GET /api/playlist/hole2/start HTTP/1.1");
+    client.print("Host: ");
+    client.println(ipStr);
+    client.println("Connection: close");
+    client.println();
+  } else {
+    // if you didn't get a connection to the server:
+    Serial.println("connection failed");
+  }
+}
+
+void hole3() {
+  // if you get a connection, report back via serial:
+  if (client.connect(fpp, httpDestinationPort)) {
+    Serial.print("Http rainbow connected to ");
+    Serial.println(client.remoteIP());
+    // Make a HTTP request:
+    client.println("GET /api/playlist/hole3/start HTTP/1.1");
+    client.print("Host: ");
+    client.println(ipStr);
+    client.println("Connection: close");
+    client.println();
+  } else {
+    // if you didn't get a connection to the server:
+    Serial.println("connection failed");
+  }
+}
+
+void hole4() {
+  // if you get a connection, report back via serial:
+  if (client.connect(fpp, httpDestinationPort)) {
+    Serial.print("Http rainbow connected to ");
+    Serial.println(client.remoteIP());
+    // Make a HTTP request:
+    client.println("GET /api/playlist/hole4/start HTTP/1.1");
+    client.print("Host: ");
+    client.println(ipStr);
+    client.println("Connection: close");
+    client.println();
+  } else {
+    // if you didn't get a connection to the server:
+    Serial.println("connection failed");
+  }
+}
+
+void hole6() {
+  // if you get a connection, report back via serial:
+  if (client.connect(fpp, httpDestinationPort)) {
+    Serial.print("Http rainbow connected to ");
+    Serial.println(client.remoteIP());
+    // Make a HTTP request:
+    client.println("GET /api/playlist/hole6/start HTTP/1.1");
+    client.print("Host: ");
+    client.println(ipStr);
+    client.println("Connection: close");
+    client.println();
+  } else {
+    // if you didn't get a connection to the server:
+    Serial.println("connection failed");
+  }
+}
+
+void hole7() {
+  // if you get a connection, report back via serial:
+  if (client.connect(fpp, httpDestinationPort)) {
+    Serial.print("Http rainbow connected to ");
+    Serial.println(client.remoteIP());
+    // Make a HTTP request:
+    client.println("GET /api/playlist/hole7/start HTTP/1.1");
+    client.print("Host: ");
+    client.println(ipStr);
+    client.println("Connection: close");
+    client.println();
+  } else {
+    // if you didn't get a connection to the server:
+    Serial.println("connection failed");
+  }
+}
 void setup() {
   // ------------------------> IR Beam Break Setup here <----------------------
   // initialize the LED pin as an output:
@@ -119,8 +190,6 @@ void setup() {
   digitalWrite(SENSORPIN_6, HIGH);  // turn on the pullup
   pinMode(SENSORPIN_7, INPUT);
   digitalWrite(SENSORPIN_7, HIGH);  // turn on the pullup
-
-  Serial.begin(9600);
 
   // ------------------------>  Ethernet Setup <----------------------
   // You can use Ethernet.init(pin) to configure the CS pin
@@ -148,10 +217,6 @@ void setup() {
     Serial.println("Ethernet cable is not connected.");
   }
 
-  // ------------------------>  UDP Trigger Setup  <------------------------
-  // start UDP
-  Udp.begin(UdpLocalPort);
-
   //------------------------>  HTTP Client Setup <-----------------------
 }
 
@@ -165,48 +230,15 @@ void loop() {
   sensorState_6 = digitalRead(SENSORPIN_6);
   sensorState_7 = digitalRead(SENSORPIN_7);
   //
-  // Read UDP packet if available
-  int udpPacket = Udp.parsePacket();
-  if (udpPacket) {
-    Serial.print("Receive Packet From ");
-    Serial.print(Udp.remoteIP());
-    Serial.print(":");
-    Serial.println(Udp.remotePort());
-    // read the packet info packetBuffer
-    Udp.read(packetBuffer, UDP_TX_PACKET_MAX_SIZE);
-    Serial.println("Contents:");
-    Serial.println(packetBuffer);
-    String pkt = packetBuffer;
-    pkt.trim();
-    if (pkt == UdpPinWheel) {
-      runPinWheel();
-    };
-    if (pkt == UdpRainbow) {
-      runRainbow();
-    };
-  }
 
   //
   // Sensor 1
   if (sensorState_1 && !lastState_1) {
     Serial.println("Unbroken_1");
-    String msgStr = UdpIdentifier + "_1" + "_Unbroken";
-    char msgChar[msgStr.length() + 1];
-    strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, UdpDestinationPort);
-    Udp.write(msgChar);
-    Udp.endPacket();
   }
   if (!sensorState_1 && lastState_1) {
     if (millis() - sensorMillis_1 > debounceTime) {
       Serial.println("Broken_1");
-      // UDP LOGIC HERE!!!
-      String msgStr = UdpIdentifier + "_1" + "_Broken";
-      char msgChar[msgStr.length() + 1];
-      strcpy(msgChar, msgStr.c_str());
-      Udp.beginPacket(sPlay, UdpDestinationPort);
-      Udp.write(msgChar);
-      Udp.endPacket();
       // Http Message Send
       runRainbow();
       // millis tracking for debounce
@@ -218,23 +250,10 @@ void loop() {
   // Sensor 2
   if (sensorState_2 && !lastState_2) {
     Serial.println("Unbroken_2");
-    String msgStr = UdpIdentifier + "_2" + "_Unbroken";
-    char msgChar[msgStr.length() + 1];
-    strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, UdpDestinationPort);
-    Udp.write(msgChar);
-    Udp.endPacket();
   }
   if (!sensorState_2 && lastState_2) {
     if (millis() - sensorMillis_2 > debounceTime) {
       Serial.println("Broken_2");
-      // UDP LOGIC HERE!!!
-      String msgStr = UdpIdentifier + "_2" + "_Broken";
-      char msgChar[msgStr.length() + 1];
-      strcpy(msgChar, msgStr.c_str());
-      Udp.beginPacket(sPlay, UdpDestinationPort);
-      Udp.write(msgChar);
-      Udp.endPacket();
       // Http Message Send
       runRainbow();
       // millis tracking for debounce
@@ -246,23 +265,10 @@ void loop() {
   // Sensor 3
   if (sensorState_3 && !lastState_3) {
     Serial.println("Unbroken_3");
-    String msgStr = UdpIdentifier + "_3" + "_Unbroken";
-    char msgChar[msgStr.length() + 1];
-    strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, UdpDestinationPort);
-    Udp.write(msgChar);
-    Udp.endPacket();
   }
   if (!sensorState_3 && lastState_3) {
     if (millis() - sensorMillis_3 > debounceTime) {
       Serial.println("Broken_3");
-      // UDP LOGIC HERE!!!
-      String msgStr = UdpIdentifier + "_3" + "_Broken";
-      char msgChar[msgStr.length() + 1];
-      strcpy(msgChar, msgStr.c_str());
-      Udp.beginPacket(sPlay, UdpDestinationPort);
-      Udp.write(msgChar);
-      Udp.endPacket();
       // Http Message Send
       runRainbow();
       // millis tracking for debounce
@@ -274,23 +280,10 @@ void loop() {
   // Sensor 4
   if (sensorState_4 && !lastState_4) {
     Serial.println("Unbroken_4");
-    String msgStr = UdpIdentifier + "_4" + "_Unbroken";
-    char msgChar[msgStr.length() + 1];
-    strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, UdpDestinationPort);
-    Udp.write(msgChar);
-    Udp.endPacket();
   }
   if (!sensorState_4 && lastState_4) {
     if (millis() - sensorMillis_4 > debounceTime) {
       Serial.println("Broken_4");
-      // UDP LOGIC HERE!!!
-      String msgStr = UdpIdentifier + "_4" + "_Broken";
-      char msgChar[msgStr.length() + 1];
-      strcpy(msgChar, msgStr.c_str());
-      Udp.beginPacket(sPlay, UdpDestinationPort);
-      Udp.write(msgChar);
-      Udp.endPacket();
       // Http Message Send
       runRainbow();
       // millis tracking for debounce
@@ -302,23 +295,10 @@ void loop() {
   // Sensor 5
   if (sensorState_5 && !lastState_5) {
     Serial.println("Unbroken_5");
-    String msgStr = UdpIdentifier + "_5" + "_Unbroken";
-    char msgChar[msgStr.length() + 1];
-    strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, UdpDestinationPort);
-    Udp.write(msgChar);
-    Udp.endPacket();
   }
   if (!sensorState_5 && lastState_5) {
     if (millis() - sensorMillis_5 > debounceTime) {
       Serial.println("Broken_5");
-      // UDP LOGIC HERE!!!
-      String msgStr = UdpIdentifier + "_5" + "_Broken";
-      char msgChar[msgStr.length() + 1];
-      strcpy(msgChar, msgStr.c_str());
-      Udp.beginPacket(sPlay, UdpDestinationPort);
-      Udp.write(msgChar);
-      Udp.endPacket();
       // Http Message Send
       runRainbow();
       // millis tracking for debounce
@@ -331,23 +311,10 @@ void loop() {
   if (sensorState_6 && !lastState_6) {
     if (millis() - sensorMillis_6 > debounceTime) {
       Serial.println("Unbroken_6");
-      String msgStr = UdpIdentifier + "_6" + "_Unbroken";
-      char msgChar[msgStr.length() + 1];
-      strcpy(msgChar, msgStr.c_str());
-      Udp.beginPacket(sPlay, UdpDestinationPort);
-      Udp.write(msgChar);
-      Udp.endPacket();
     }
   }
   if (!sensorState_6 && lastState_6) {
     Serial.println("Broken_6");
-    // UDP LOGIC HERE!!!
-    String msgStr = UdpIdentifier + "_6" + "_Broken";
-    char msgChar[msgStr.length() + 1];
-    strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, UdpDestinationPort);
-    Udp.write(msgChar);
-    Udp.endPacket();
     // Http Message Send
     runRainbow();
     // millis tracking for debounce
@@ -358,23 +325,10 @@ void loop() {
   // Sensor 7
   if (sensorState_7 && !lastState_7) {
     Serial.println("Unbroken_7");
-    String msgStr = UdpIdentifier + "_7" + "_Unbroken";
-    char msgChar[msgStr.length() + 1];
-    strcpy(msgChar, msgStr.c_str());
-    Udp.beginPacket(sPlay, UdpDestinationPort);
-    Udp.write(msgChar);
-    Udp.endPacket();
   }
   if (!sensorState_7 && lastState_7) {
     if (millis() - sensorMillis_7 > debounceTime) {
       Serial.println("Broken_7");
-      // UDP LOGIC HERE!!!
-      String msgStr = UdpIdentifier + "_7" + "_Broken";
-      char msgChar[msgStr.length() + 1];
-      strcpy(msgChar, msgStr.c_str());
-      Udp.beginPacket(sPlay, UdpDestinationPort);
-      Udp.write(msgChar);
-      Udp.endPacket();
       // Http Message Send
       runRainbow();
       // millis tracking for debounce
