@@ -1,0 +1,14 @@
+Number	Name	Group	Length	Priority	Timecode Source	Timecode Settings	Hold	Loop	Release at End
+10	Base Timeline		00:05:00.00	Normal		00:00:00.00	Yes	No	
+21	Lane 1 Debounce		00:00:15.00	Normal		00:00:00.00	No	No	
+11	Lane 1 Win		00:05:00.00	Normal		00:00:00.00	No	No	
+22	Lane 2 Debounce		00:00:15.00	Normal		00:00:00.00	No	No	
+12	Lane 2 Win		00:05:00.00	Normal		00:00:00.00	No	No	
+23	Lane 3 Debounce		00:00:15.00	Normal		00:00:00.00	No	No	
+13	Lane 3 Win		00:05:00.00	Normal		00:00:00.00	No	No	
+24	Lane 4 Debounce		00:00:15.00	Normal		00:00:00.00	No	No	
+14	Lane 4 Win		00:05:00.00	Normal		00:00:00.00	No	No	
+25	Lane 5 Debounce		00:00:15.00	Normal		00:00:00.00	No	No	
+15	Lane 5 Win		00:05:00.00	Normal		00:00:00.00	No	No	
+16	Nemours PinWheel		00:05:00.00	Normal		00:00:00.00	No	No	
+17	Rainbow Pinwheel		00:05:00.00	Normal		00:00:00.00	No	No	

@@ -1,0 +1,8 @@
+Manufacturer	Model	Name	Number	Layout	X Position	Y Position	Rotation	Locked	Width	Height	Gel Colour	Dimmer Curve	Max Intensity	Comments	Invert Pan	Invert Tilt	Swap Pan/Tilt	Shape
+Generic	LED - GRB 8 bit	Lane 1	1	Layout 1	3840	2160	0°	No	240	240	#ffffff	Linear	100%					Square
+Generic	LED - GRB 8 bit	Lane 2	2	Layout 1	3360	2640	0°	No	240	240	#ffffff	Linear	100%					Square
+Generic	LED - GRB 8 bit	Lane 3	3	Layout 1	3600	3120	0°	No	240	240	#ffffff	Linear	100%					Square
+Generic	LED - GRB 8 bit	Lane 4	4	Layout 1	4080	3120	0°	No	240	240	#ffffff	Linear	100%					Square
+Generic	LED - GRB 8 bit	Lane 5	5	Layout 1	4320	2640	0°	No	240	240	#ffffff	Linear	100%					Square
+Generic	LED - GRB 8 bit	Logo_Heads	6	Layout 1	3840	2640	0°	No	240	240	#ffffff	Linear	100%					Square
+Generic	Conventional 8 bit	Dummy	11	Layout 1	7680	5760	0°	No	300	300	#ffffff	Linear	100%					

@@ -1,0 +1,26 @@
+Number	Type	Name	Group	Absorbed	Description	Data	Condition	Action Type	Action Data	Enabled
+10	Startup	Starup	3	Yes		At startup		Start Timeline	Start Base Timeline	Yes
+11	Digital Input	Lane 1 Button	1	Yes		Input 1 on any controller goes low	Lane 1 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	IO Module	FPP:  Make a GET request to" /api/playlist/rainbow/start" with data" "	Yes
+11	Digital Input	Lane 1 Button	1	Yes		Input 1 on any controller goes low	Lane 1 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 1 Win	Yes
+11	Digital Input	Lane 1 Button	1	Yes		Input 1 on any controller goes low	Lane 1 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 1 Debounce	Yes
+12	Digital Input	Lane 2 Button	1	Yes		Input 2 on any controller goes low	Lane 2 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	IO Module	FPP:  Make a GET request to" /api/playlist/rainbow/start" with data" "	Yes
+12	Digital Input	Lane 2 Button	1	Yes		Input 2 on any controller goes low	Lane 2 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 2 Win	Yes
+12	Digital Input	Lane 2 Button	1	Yes		Input 2 on any controller goes low	Lane 2 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 2 Debounce	Yes
+13	Digital Input	Lane 3 Button	1	Yes		Input 3 on any controller goes low	Lane 3 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	IO Module	FPP:  Make a GET request to" /api/playlist/rainbow/start" with data" "	Yes
+13	Digital Input	Lane 3 Button	1	Yes		Input 3 on any controller goes low	Lane 3 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 3 Win	Yes
+13	Digital Input	Lane 3 Button	1	Yes		Input 3 on any controller goes low	Lane 3 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 3 Debounce	Yes
+14	Digital Input	Lane 4 Button	1	Yes		Input 4 on any controller goes low	Lane 5 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	IO Module	FPP:  Make a GET request to" /api/playlist/rainbow/start" with data" "	Yes
+14	Digital Input	Lane 4 Button	1	Yes		Input 4 on any controller goes low	Lane 5 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 4 Win	Yes
+14	Digital Input	Lane 4 Button	1	Yes		Input 4 on any controller goes low	Lane 5 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 4 Debounce	Yes
+15	Digital Input	Lane 5 Button	1	Yes		Input 5 on any controller goes low	Lane 5 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	IO Module	FPP:  Make a GET request to" /api/playlist/rainbow/start" with data" "	Yes
+15	Digital Input	Lane 5 Button	1	Yes		Input 5 on any controller goes low	Lane 5 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 5 Win	Yes
+15	Digital Input	Lane 5 Button	1	Yes		Input 5 on any controller goes low	Lane 5 Debounce is not running on local controller AND Nemours PinWheel is not running on local controller	Start Timeline	Start Lane 5 Debounce	Yes
+16	Real Time	Nemours Chase	1	Yes		Hourly at 00m 00s every day		IO Module	FPP:  Make a GET request to" /api/playlist/nemours/start" with data" "	Yes
+16	Real Time	Nemours Chase	1	Yes		Hourly at 00m 00s every day		Start Timeline	Start Nemours PinWheel	Yes
+20	Soft	Base Timeline	6	Yes		When triggered		Start Timeline	Start Base Timeline	Yes
+21	Soft	Nemours PinWheel	6	Yes		When triggered		Enqueue Trigger	Enqueue trigger 16	Yes
+22	Soft	Rainbow All	6	Yes		When triggered		Start Timeline	Start Lane 1 Win	Yes
+22	Soft	Rainbow All	6	Yes		When triggered		Start Timeline	Start Lane 2 Win	Yes
+22	Soft	Rainbow All	6	Yes		When triggered		Start Timeline	Start Lane 3 Win	Yes
+22	Soft	Rainbow All	6	Yes		When triggered		Start Timeline	Start Lane 4 Win	Yes
+22	Soft	Rainbow All	6	Yes		When triggered		Start Timeline	Start Lane 5 Win	Yes
