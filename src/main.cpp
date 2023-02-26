@@ -27,8 +27,9 @@ unsigned long debounceTime = 15000;
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
-byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84};  // Testing_board MAC address
-// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x78}; // Center_Putt MAC address
+// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84};  // Testing_board MAC
+// address
+byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x78};  // Center_Putt MAC address
 // byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x7F}; // Ski_Putt_1 MAC address
 // byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x76}; // Ski_Putt_2 MAC address
 IPAddress ip(192, 168, 0, 175);  // The ip of the arduino's ethernet shield
