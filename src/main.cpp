@@ -23,16 +23,14 @@ unsigned long sensorMillis_1 = 0, sensorMillis_2 = 0, sensorMillis_3 = 0,
               sensorMillis_4 = 0, sensorMillis_5 = 0, sensorMillis_6 = 0,
               sensorMillis_7 = 0;
 // Time we wait before we set up another trigger
-unsigned long debounceTime = 15000;
+unsigned long debounceTime = 500;
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
-byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84};  // Testing_board MAC
-// address
+// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x84};  // Testing_board MAC
 // byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x78};  // Center_Putt MAC
-// address byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x7F}; // Ski_Putt_1 MAC
-// address byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x76}; // Ski_Putt_2 MAC
-// address
+byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x7F};  // Ski_Putt_1 MAC
+// byte mac[] = {0xA0, 0x61, 0x0A, 0xAE, 0xA9, 0x76};  // Ski_Putt_2 MAC
 IPAddress ip(192, 168, 0, 175);  // The ip of the arduino's ethernet shield
 
 // Initialize the Ethernet client library
@@ -128,6 +126,23 @@ void hole4() {
     Serial.println(client.remoteIP());
     // Make a HTTP request:
     client.println("GET /api/playlist/hole4/start HTTP/1.1");
+    client.print("Host: ");
+    client.println(ipStr);
+    client.println("Connection: close");
+    client.println();
+  } else {
+    // if you didn't get a connection to the server:
+    Serial.println("connection failed");
+  }
+}
+
+void hole5() {
+  // if you get a connection, report back via serial:
+  if (client.connect(fpp, httpDestinationPort)) {
+    Serial.print("Http rainbow connected to ");
+    Serial.println(client.remoteIP());
+    // Make a HTTP request:
+    client.println("GET /api/playlist/hole5/start HTTP/1.1");
     client.print("Host: ");
     client.println(ipStr);
     client.println("Connection: close");
@@ -240,7 +255,7 @@ void loop() {
     if (millis() - sensorMillis_1 > debounceTime) {
       Serial.println("Broken_1");
       // Http Message Send
-      runRainbow();
+      hole1();
       // millis tracking for debounce
       sensorMillis_1 = millis();
     }
@@ -255,7 +270,7 @@ void loop() {
     if (millis() - sensorMillis_2 > debounceTime) {
       Serial.println("Broken_2");
       // Http Message Send
-      runRainbow();
+      hole2();
       // millis tracking for debounce
       sensorMillis_2 = millis();
     }
@@ -270,7 +285,7 @@ void loop() {
     if (millis() - sensorMillis_3 > debounceTime) {
       Serial.println("Broken_3");
       // Http Message Send
-      runRainbow();
+      hole3();
       // millis tracking for debounce
       sensorMillis_3 = millis();
     }
@@ -285,7 +300,7 @@ void loop() {
     if (millis() - sensorMillis_4 > debounceTime) {
       Serial.println("Broken_4");
       // Http Message Send
-      runRainbow();
+      hole4();
       // millis tracking for debounce
       sensorMillis_4 = millis();
     }
@@ -300,7 +315,7 @@ void loop() {
     if (millis() - sensorMillis_5 > debounceTime) {
       Serial.println("Broken_5");
       // Http Message Send
-      runRainbow();
+      hole5();
       // millis tracking for debounce
       sensorMillis_5 = millis();
     }
@@ -316,7 +331,7 @@ void loop() {
   if (!sensorState_6 && lastState_6) {
     Serial.println("Broken_6");
     // Http Message Send
-    runRainbow();
+    hole6();
     // millis tracking for debounce
     sensorMillis_6 = millis();
   }
@@ -330,7 +345,7 @@ void loop() {
     if (millis() - sensorMillis_7 > debounceTime) {
       Serial.println("Broken_7");
       // Http Message Send
-      runRainbow();
+      hole7();
       // millis tracking for debounce
       sensorMillis_7 = millis();
     }
