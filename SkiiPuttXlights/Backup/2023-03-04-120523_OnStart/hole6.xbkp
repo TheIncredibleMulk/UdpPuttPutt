@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsequence BaseChannel="0" ChanCtrlBasic="0" ChanCtrlColor="0" FixedPointTiming="1" ModelBlending="true">
+  <head>
+    <version>2023.03</version>
+    <author></author>
+    <author-email></author-email>
+    <author-website></author-website>
+    <song></song>
+    <artist></artist>
+    <album></album>
+    <MusicURL></MusicURL>
+    <comment></comment>
+    <sequenceTiming>50 ms</sequenceTiming>
+    <sequenceType>Animation</sequenceType>
+    <mediaFile></mediaFile>
+    <sequenceDuration>15</sequenceDuration>
+    <imageDir/>
+  </head>
+  <nextid>1</nextid>
+  <Jukebox/>
+  <ColorPalettes>
+    <ColorPalette>C_BUTTON_Palette1=#FFFFFF,C_BUTTON_Palette2=#000000,C_BUTTON_Palette3=#000000,C_BUTTON_Palette4=#FFFFFF,C_BUTTON_Palette5=#000000,C_BUTTON_Palette6=#000000,C_BUTTON_Palette7=#00FFFF,C_BUTTON_Palette8=#FF00FF,C_CHECKBOX_Palette4=1</ColorPalette>
+    <ColorPalette>C_BUTTON_Palette1=#FFFFFF,C_BUTTON_Palette2=#FF0000,C_BUTTON_Palette3=#00FF00,C_BUTTON_Palette4=#0000FF,C_BUTTON_Palette5=#FFFF00,C_BUTTON_Palette6=#000000,C_BUTTON_Palette7=#00FFFF,C_BUTTON_Palette8=#FF00FF,C_CHECKBOX_Palette1=1,C_CHECKBOX_Palette2=1,C_CHECKBOX_Palette3=1,C_CHECKBOX_Palette4=1,C_CHECKBOX_Palette5=1,C_CHECKBOX_Palette7=1,C_CHECKBOX_Palette8=1</ColorPalette>
+    <ColorPalette>C_BUTTON_Palette1=#FFFFFF,C_BUTTON_Palette2=#000000,C_BUTTON_Palette3=#47FFAA,C_BUTTON_Palette4=#0000FF,C_BUTTON_Palette5=#FFFF00,C_BUTTON_Palette6=#000000,C_BUTTON_Palette7=#00FFFF,C_BUTTON_Palette8=#FF00FF,C_CHECKBOX_Palette1=1,C_CHECKBOX_Palette2=1,C_CHECKBOX_Palette3=1,C_CHECKBOX_Palette6=1</ColorPalette>
+  </ColorPalettes>
+  <EffectDB>
+    <Effect>B_CUSTOM_SubBuffer=0.00x75.00x99.00x78.00x0.00x0.00,E_CHECKBOX_Shape_FadeAway=0,E_CHECKBOX_Shape_FireTiming=0,E_CHECKBOX_Shape_HoldColour=1,E_CHECKBOX_Shape_RandomInitial=0,E_CHECKBOX_Shape_RandomLocation=0,E_CHECKBOX_Shape_UseMusic=0,E_CHECKBOX_Shapes_RandomMovement=0,E_CHOICE_Shape_ObjectToDraw=Square,E_SLIDER_Shape_CentreX=50,E_SLIDER_Shape_CentreY=50,E_SLIDER_Shape_Growth=10,E_SLIDER_Shape_Lifetime=100,E_SLIDER_Shape_Rotation=0,E_SLIDER_Shape_StartSize=100,E_SLIDER_Shape_Thickness=100,E_SLIDER_Shapes_Direction=99,E_SLIDER_Shapes_Velocity=0,E_TEXTCTRL_Shape_Count=1,E_TEXTCTRL_Shapes_Direction=99,E_TEXTCTRL_Shapes_Velocity=0,T_TEXTCTRL_Fadeout=0.50</Effect>
+    <Effect>E_CHECKBOX_Spirals_3D=0,E_CHECKBOX_Spirals_Blend=0,E_CHECKBOX_Spirals_Grow=0,E_CHECKBOX_Spirals_Shrink=0,E_SLIDER_Spirals_Count=1,E_SLIDER_Spirals_Rotation=84,E_SLIDER_Spirals_Thickness=50,E_TEXTCTRL_Spirals_Movement=8.3,T_TEXTCTRL_Fadein=0.50</Effect>
+    <Effect>E_CHOICE_Butterfly_Colors=Rainbow,E_CHOICE_Butterfly_Direction=Reverse,E_SLIDER_Butterfly_Chunks=1,E_SLIDER_Butterfly_Skip=6,E_SLIDER_Butterfly_Speed=10,E_SLIDER_Butterfly_Style=5,T_TEXTCTRL_Fadein=.5,T_TEXTCTRL_Fadeout=0.50</Effect>
+    <Effect>E_CHECKBOX_Chase_3dFade1=0,E_CHECKBOX_Chase_Group_All=0,E_CHOICE_Chase_Type1=Bounce from Middle,E_CHOICE_SingleStrand_Colors=Palette,E_CHOICE_SingleStrand_FX=Fireworks 1D,E_CHOICE_SingleStrand_FX_Palette=* Colors Only,E_CHOICE_Skips_Direction=Left,E_NOTEBOOK_SSEFFECT_TYPE=Chase,E_SLIDER_Color_Mix1=10,E_SLIDER_FX_Intensity=128,E_SLIDER_FX_Speed=128,E_SLIDER_Number_Chases=2,E_SLIDER_Skips_Advance=0,E_SLIDER_Skips_BandSize=1,E_SLIDER_Skips_SkipSize=1,E_SLIDER_Skips_StartPos=1,E_TEXTCTRL_Chase_Rotations=3.7,T_TEXTCTRL_Fadein=0.50</Effect>
+    <Effect>E_CHECKBOX_Pinwheel_Rotation=1,E_CHOICE_Pinwheel_3D=None,E_CHOICE_Pinwheel_Style=New Render Method,E_SLIDER_PinwheelXC=0,E_SLIDER_PinwheelYC=0,E_SLIDER_Pinwheel_ArmSize=82,E_SLIDER_Pinwheel_Arms=6,E_SLIDER_Pinwheel_Offset=0,E_SLIDER_Pinwheel_Speed=5,E_SLIDER_Pinwheel_Thickness=62,E_SLIDER_Pinwheel_Twist=-360,T_TEXTCTRL_Fadein=0.50</Effect>
+  </EffectDB>
+  <DataLayers>
+    <DataLayer lor_params="0" channel_offset="0" num_channels="0" num_frames="0" data="&lt;rendered: erase-mode&gt;" source="&lt;auto-generated&gt;" name="Nutcracker"/>
+  </DataLayers>
+  <DisplayElements>
+    <Element collapsed="0" type="timing" name="New Timing" visible="1" views="Master View" active="1"/>
+    <Element collapsed="0" type="model" name="All Pixels" visible="1"/>
+    <Element collapsed="0" type="model" name="All Linear" visible="1"/>
+    <Element collapsed="0" type="model" name="Outer Edges" visible="1"/>
+    <Element collapsed="0" type="model" name="All Water" visible="1"/>
+    <Element collapsed="0" type="model" name="Side Water" visible="1"/>
+    <Element collapsed="0" type="model" name="Ramps" visible="1"/>
+    <Element collapsed="0" type="model" name="Matrix" visible="1"/>
+    <Element collapsed="0" type="model" name="Top Header" visible="1"/>
+    <Element collapsed="0" type="model" name="Left Water" visible="1"/>
+    <Element collapsed="0" type="model" name="Left Runner" visible="1"/>
+    <Element collapsed="0" type="model" name="Right Water" visible="1"/>
+    <Element collapsed="0" type="model" name="Right Runner" visible="1"/>
+    <Element collapsed="0" type="model" name="Island" visible="1"/>
+    <Element collapsed="0" type="model" name="Left Ramp" visible="1"/>
+    <Element collapsed="0" type="model" name="Right Ramp" visible="1"/>
+  </DisplayElements>
+  <ElementEffects>
+    <Element type="timing" name="New Timing">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="All Pixels">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="All Linear">
+      <EffectLayer>
+        <Effect ref="0" name="Shape" selected="1" startTime="50" endTime="2700" palette="0"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Outer Edges">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="All Water">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Side Water">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Ramps">
+      <EffectLayer>
+        <Effect ref="1" name="Spirals" startTime="3250" endTime="22550" palette="1"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Matrix">
+      <EffectLayer>
+        <Effect ref="2" name="Butterfly" startTime="3200" endTime="33250" palette="2"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Top Header">
+      <EffectLayer>
+        <Effect ref="3" name="SingleStrand" startTime="3300" endTime="22600" palette="1"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Left Water">
+      <EffectLayer>
+        <Effect ref="3" name="SingleStrand" startTime="3300" endTime="22600" palette="1"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Left Runner">
+      <EffectLayer>
+        <Effect ref="3" name="SingleStrand" startTime="3300" endTime="22600" palette="1"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Right Water">
+      <EffectLayer>
+        <Effect ref="3" name="SingleStrand" startTime="3250" endTime="22550" palette="1"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Right Runner">
+      <EffectLayer>
+        <Effect ref="3" name="SingleStrand" startTime="3250" endTime="22550" palette="1"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Island">
+      <EffectLayer>
+        <Effect ref="4" name="Pinwheel" startTime="3100" endTime="15700" palette="1"/>
+      </EffectLayer>
+    </Element>
+    <Element type="model" name="Left Ramp">
+      <EffectLayer/>
+    </Element>
+    <Element type="model" name="Right Ramp">
+      <EffectLayer/>
+    </Element>
+  </ElementEffects>
+  <lastView>0</lastView>
+  <TimingTags>
+    <Tag number="0" position="-1"/>
+    <Tag number="1" position="-1"/>
+    <Tag number="2" position="-1"/>
+    <Tag number="3" position="-1"/>
+    <Tag number="4" position="-1"/>
+    <Tag number="5" position="-1"/>
+    <Tag number="6" position="-1"/>
+    <Tag number="7" position="-1"/>
+    <Tag number="8" position="-1"/>
+    <Tag number="9" position="-1"/>
+  </TimingTags>
+</xsequence>
